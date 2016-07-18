@@ -19,4 +19,5 @@ urlpatterns = [
     url(r'^', include('backend.urls')),
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^accounts/', include('registration.backends.simple.urls'))
 ]

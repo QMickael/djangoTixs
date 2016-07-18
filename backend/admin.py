@@ -4,9 +4,30 @@ from backend.models import Customer, Car, CarBrand, Locality, CarModel, Reservat
 # Register your models here.
 
 
-admin.site.register(Customer)
-admin.site.register(Car)
+class CarAdmin(admin.ModelAdmin):
+    model = Car
+    list_display = ['number_id', 'color', 'price_day', 'brand', 'model', 'car_fuel', 'car_category', 'locality']
+
+
+class LocalityAdmin(admin.ModelAdmin):
+    model = Locality
+    list_display = ['address', 'city', 'postal_code', 'country']
+
+
+class ReservationAdmin(admin.ModelAdmin):
+    model = Reservation
+    list_display = ['id_customer', 'id_car', 'id_from_locality', 'id_to_locality',
+                    'from_date', 'to_date', 'price_reservation']
+
+
+class CustomerAdmin(admin.ModelAdmin):
+    model = Customer
+    list_display = ['user', 'locality', 'phone_number']
+
+
+admin.site.register(Customer, CustomerAdmin)
+admin.site.register(Car, CarAdmin)
 admin.site.register(CarBrand)
-admin.site.register(Locality)
+admin.site.register(Locality, LocalityAdmin)
 admin.site.register(CarModel)
-admin.site.register(Reservation)
+admin.site.register(Reservation, ReservationAdmin)

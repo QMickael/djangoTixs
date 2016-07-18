@@ -10,6 +10,9 @@ class Customer(db.Model):
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,12}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
     phone_number = db.CharField(validators=[phone_regex], blank=True, max_length=10) # validators should be a list
 
+    def __str__(self):
+        return self.user.username
+
 
 class Locality(db.Model):
     class Meta:
@@ -21,8 +24,8 @@ class Locality(db.Model):
     postal_code = db.CharField(validators=[postal_code_regex], blank=True, max_length=5)
     country = db.CharField(max_length=30)
 
-    #def __str__(self):
-    #    self.address
+    def __str__(self):
+        return self.address
 
 
 class Car(db.Model):
@@ -59,23 +62,23 @@ class Car(db.Model):
     car_category = db.CharField(max_length=3, choices=CAR_CATEGORIES)
     locality = db.ForeignKey('Locality')
 
-    #def __str__(self):
-    #    self.number_id
+    def __str__(self):
+        return self.number_id
 
 
 class CarBrand(db.Model):
     brand = db.CharField(max_length=20)
 
-    #def __str__(self):
-    #    self.brand
+    def __str__(self):
+        return self.brand
 
 
 class CarModel(db.Model):
     model = db.CharField(max_length=20)
     brand = db.ForeignKey('CarBrand')
 
-    #def __str__(self):
-    #    self.model
+    def __str__(self):
+        return self.model
 
 
 class Reservation(db.Model):
@@ -87,5 +90,5 @@ class Reservation(db.Model):
     to_date = db.DateTimeField(blank=False)
     price_reservation = db.DecimalField(max_digits=6, decimal_places=2)
 
-    #def __str__(self):
-    #    self.id_customer
+    def __str__(self):
+        return self.id_customer

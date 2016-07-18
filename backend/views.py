@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'backend/index.html')
 
 
 def comment(request, pk):
