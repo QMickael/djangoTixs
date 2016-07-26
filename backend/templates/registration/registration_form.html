@@ -1,9 +1,23 @@
-{% block body_block %}
-<h1>Register Here</h1>
-        <form method="post" action=".">
+{% extends 'backend/base.html' %}
+{% load bootstrap3 %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-4" style="margin-left: 30%">
+            <h1>Register Here</h1>
+            <form method="post" action="." class="form">
                 {% csrf_token %}
-                {{ form.as_p }}
+                {% bootstrap_form form %}
+                {% buttons %}
+                    <button type="submit" class="btn btn-primary">
+                        {% bootstrap_icon "star" %} Submit
+                    </button>
+                {% endbuttons %}
+            </form>
+        </div>
+    </div>
 
-                <input type="submit" value="Submit" />
-        </form>
+    <script>
+        $('label').hide();
+        $('.help-block').hide();
+    </script>
 {% endblock %}

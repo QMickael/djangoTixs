@@ -6,7 +6,3 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 
 def index(request):
     return render(request, 'backend/index.html')
-
-
-def comment(request, pk):
-    return HttpResponse('id: {0}'.format(pk, ))
