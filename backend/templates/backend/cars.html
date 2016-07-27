@@ -1,0 +1,10 @@
+{% extends 'backend/base.html' %}
+{% block content %}
+    {% for category in categories %}
+        <div class="cars">
+            <h2>{{ category.name }} car</h2>
+            <img src="{{ category.picture.url }}"/>
+            <p>{{ category.content }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -43,27 +43,30 @@ class Car(db.Model):
         ('ELC', 'Electric'),
         ('GPL', 'GPL'),
     )
-    CAR_CATEGORIES = (
-        ('ECO', 'Economy'),
-        ('INT', 'Intermediate'),
-        ('MIN', 'Minivan'),
-        ('SUV', 'SUV'),
-        ('AUT', 'Automatic'),
-        ('WED', 'Wedding'),
-        ('LUX', 'Luxury'),
-        ('CON', 'Convertible'),
-    )
     number_id = db.CharField(max_length=10)
     color = db.CharField(max_length=20, choices=COLOR)
     price_day = db.DecimalField(max_digits=5, decimal_places=2)
     brand = db.ForeignKey('CarBrand')
     model = db.ForeignKey('CarModel')
     car_fuel = db.CharField(max_length=3, choices=CAR_FUEL)
-    car_category = db.CharField(max_length=3, choices=CAR_CATEGORIES)
+    car_category = db.ForeignKey('CarCategory')
     locality = db.ForeignKey('Locality')
+    picture = db.ImageField(upload_to='img/')
 
     def __str__(self):
         return self.number_id
+
+
+class CarCategory(db.Model):
+    class Meta:
+        verbose_name_plural = 'car categories'
+
+    name = db.CharField(max_length=50, unique=True)
+    content = db.TextField(null=False)
+    picture = db.ImageField(upload_to='img/', null=False)
+
+    def __str__(self):
+        return self.name
 
 
 class CarBrand(db.Model):

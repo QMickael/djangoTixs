@@ -1,0 +1,12 @@
+{% extends 'backend/base.html' %}
+{% block content %}
+    {% for locality in localities %}
+        <div class="locality">
+            <h3>{{ locality.city }}</h3>
+            <p>{{ locality.address }}</p>
+            <p>{{ locality.postal_code }}</p>
+            <p>{{ locality.country }}</p>
+            <hr>
+        </div>
+    {% endfor %}
+{% endblock %}
